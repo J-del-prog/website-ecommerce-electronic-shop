@@ -115,25 +115,6 @@ export default function Navbar() {
             >
               <Truck size={12} /> Lacak Resi
             </button>
-            <span style={{ opacity: 0.5 }}>•</span>
-            <button 
-              onClick={() => navigate('admin')} 
-              style={{
-                background: 'rgba(255,255,255,0.15)',
-                border: '1px solid rgba(255,255,255,0.3)',
-                borderRadius: '2px',
-                color: '#FFFFFF',
-                padding: '2px 8px',
-                cursor: 'pointer',
-                fontFamily: 'inherit',
-                fontSize: '0.7rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px'
-              }}
-            >
-              <Settings size={11} /> Admin Panel
-            </button>
           </div>
         </div>
       </div>

@@ -8,6 +8,11 @@ export function StoreProvider({ children }) {
   const [activePage, setActivePage] = useState('home');
   const [pageParams, setPageParams] = useState({});
 
+  // Admin auth state
+  const [isAdminAuthenticated, setAdminAuthenticated] = useState(() => {
+    return localStorage.getItem('jp_admin_auth') === 'true';
+  });
+
   // Products state (persisted to LocalStorage so Admin actions persist)
   const [products, setProducts] = useState(() => {
     try {
@@ -73,6 +78,14 @@ export function StoreProvider({ children }) {
       console.error('Failed to save cart', e);
     }
   }, [cart]);
+
+  useEffect(() => {
+    if (isAdminAuthenticated) {
+      localStorage.setItem('jp_admin_auth', 'true');
+    } else {
+      localStorage.removeItem('jp_admin_auth');
+    }
+  }, [isAdminAuthenticated]);
 
   useEffect(() => {
     try {
@@ -351,7 +364,9 @@ export function StoreProvider({ children }) {
     resetToDefaultData,
     toast,
     showToast,
-    formatRupiah
+    formatRupiah,
+    isAdminAuthenticated,
+    setAdminAuthenticated
   };
 
   return (
